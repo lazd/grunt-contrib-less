@@ -37,6 +37,9 @@ module.exports = function(grunt) {
       async.concatSeries(srcFiles, function(srcFile, nextConcat) {
         helperOptions = _.extend({filename: srcFile}, options);
         sourceCode = grunt.file.read(srcFile);
+        options.paths.forEach(function(src, i) {
+          options.paths[i] = grunt.template.process(src);
+        });
 
         compileLess(sourceCode, helperOptions, function(css, err) {
           if(!err) {

@@ -33,6 +33,10 @@ module.exports = function(grunt) {
       }
     },
 
+    dirs: {
+      lessIncludes: 'test/fixtures/include'
+    },
+
     // Before generating any new files, remove any previously-created files.
     clean: {
       test: ['tmp']
@@ -42,7 +46,7 @@ module.exports = function(grunt) {
     less: {
       compile: {
         options: {
-          paths: ['test/fixtures/include']
+          paths: ['<%= dirs.lessIncludes %>'] // test expansion of dirs
         },
         files: {
           'tmp/less_a.css': ['test/fixtures/style.less'],
